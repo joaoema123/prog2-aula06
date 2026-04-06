@@ -1,22 +1,29 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 #include "mapa.h"
-int main () {
+int main() {
+  int i, j, k;
+  FILE* fp = fopen("mapa.txt", "r");
 
-    FILE* fp = fopen ("mapas.txt", "r");
+  int altura = altura_mapa(fp);
+  int largura = largura_mapa(fp);
+  int total = total_celulas_mapa();
 
-    int altura = altura_mapa (fp);
-    int largura = largura_mapa (fp);
-    int total_celulas = total_celulas_mapa (fp);
-    /*
-    int largura = largura_mapa (fp);
-    
-    char mat [altura][largura];
+  char** mat;
+  mat = malloc(altura * sizeof(char*));
+  for (i = 0; i < altura; i++) mat[i] = malloc(largura * sizeof(char));
 
-    carrega_mapa (fp, mat); */
+  carrega_mapa(fp, mat);
 
-    printf ("%d\n", altura);
-    printf ("%d\n", largura);
-    //printf ("%d", total_celulas);
+  printf("%d\n", altura);
+  printf("%d\n", largura);
+  printf("%d\n", total);
+  /*
+  for (j = 0; j < altura; j++) {
+    for (k = 0; k < largura; k++) printf("%c ", mat[j][k]);
+    printf("\n");
+  }*/
 
-    return 0;
+  return 0;
 }
